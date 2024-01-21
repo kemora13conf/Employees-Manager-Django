@@ -1,32 +1,64 @@
-<!-- yourappname/templates/login.html -->
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN - LOGIN</title>
+    <!-- LINK THE FONT AWESOME LIBRARY -->
+    <link rel="stylesheet" href="/static/fonts/Awesome/css/all.min.css">
+    <!-- LINK THE RSET CSS FILE -->
+    <link rel="stylesheet" href="/static/reset.css">
+    <!-- LINK THE STYLE FILE -->
+    <link rel="stylesheet" href="/static/login.css">
+
+
+    <!-- LINK THE JAVASCRIPT FILES -->
+    <script src="/static/animations.js" defer></script>
 </head>
 <body>
-
-<h2>Login</h2>
-
-{% if messages %}
-  <ul class="messages">
-    {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-  </ul>
-{% endif %}
-
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <label for="username">Username:</label>
-    <input type="text" name="username" required><br>
-
-    <label for="password">Password:</label>
-    <input type="password" name="password" required><br>
-
-    <input type="submit" value="Login">
-</form>
-
+    <div class="container">
+        <div class="main">
+            <div class="about">
+                <div class="logo">
+                    <img src="/static/logo/logo-transparent.png" alt="M6 logo">
+                </div>
+                <h1 class="school">EST - SALE</h1>
+                <h2 class="second--title">System de gestion des employees</h2>
+                <p class="rights">All rights reserved &copy; 2024</p>
+            </div>
+            
+            <form method="post" action="{% url 'login' %}" class="login-form">
+              {% csrf_token %}
+                <h2 class="connexion">ADMIN</h2>
+                <div class="form-group username-group">
+                    <div class="input-box">
+                        <label for="username" class="label">Addresse Email</label>
+                        <input type="text" id="username" name="username" onfocus="onFocusInput(this)" onblur="onBlurInput(this)">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    {% if username %}
+                      <p class="error">{{ username }}</p>
+                    {% endif %}
+                </div>
+                <div class="form-group password-group">
+                    <div class="input-box">
+                        <label for="password" class="label">Mot de passe</label>
+                        <input type="password" id="password" name="password" onfocus="onFocusInput(this)" onblur="onBlurInput(this)">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    {% if password %}
+                      <p class="error">{{ password }}</p>
+                    {% endif %}
+                </div>
+                <div class="form-group submit-group">
+                    <input type="submit" value="SE CONNECTER" name="submit">
+                </div>
+                <!-- <div class="form-group other-group">
+                    <a href="/Password Forgotten/" class="forgot-pwd">Mot de passe oublié?</a>
+                </div> -->
+            </form>
+        </div>
+    </div>
 </body>
 </html>
