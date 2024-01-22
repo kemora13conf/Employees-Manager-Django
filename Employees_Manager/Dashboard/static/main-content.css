@@ -1,0 +1,146 @@
+.list-container{
+    max-width: 1000px;
+    margin: 0px auto;
+    width: 100%;
+    background: white;
+    border-radius: 5px;
+    box-shadow: rgba(50, 50, 93, 0.116) 0px 25px 50px -10px, 
+                rgba(0, 0, 0, 0.178) 0px 15px 30px -15px;
+    overflow: hidden;
+    animation: fadeIn .250s forwards ease-in-out;
+}
+.list-head{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px 20px;
+}
+.list-btn{
+    border: none;
+    outline: none;
+    background: var(--light-secondary);
+    color: var(--dark);
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 7.5px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+.list-btn:active{
+    animation: cliked .2s forwards ease-in-out;
+}
+@keyframes cliked{
+    0%{
+        scale: 1;
+    }
+    25%{
+        scale: 0.9;
+    }
+    75%{
+        scale: 0.9;
+    }
+    100%{
+        scale: 1;
+    }
+}
+.list-btn:hover{
+    background: var(--dark);
+    color: white;
+}
+.list-holder{
+    width: 100%;
+    overflow: hidden;
+    overflow-x: auto;
+    /* box-shadow: inset rgba(50, 50, 93, 0.116) 0px 0px 50px -10px, 
+                inset rgba(0, 0, 0, 0.178) 0px 0px 30px -15px; */
+}
+.list-holder::-webkit-scrollbar{
+    height: 10px;
+}
+.list-holder::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+}
+.main-list{
+    min-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+}
+thead tr{
+    background-color: var(--light-secondary);
+}
+.main-list tr{
+    cursor: pointer;
+    transition: all.3s ease;
+}
+tbody tr:hover{
+    background: var(--bg-color);
+}
+th{
+    padding: 10px 10px;
+    text-align: start;
+    font-size: 14px;
+}
+td{
+    text-align: start;
+    padding: 10px 5px 10px 10px;
+}
+td i.fa-trash{
+    margin: 0px auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--red);
+    cursor: pointer;
+    transition: all .3s ease;
+}
+td i.fa-trash:hover{
+    scale: 1.2;
+    background: var(--red);
+    color: var(--light);
+}
+td i.fa-user-edit{
+    margin: 0px auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--dark);
+    cursor: pointer;
+    transition: all .3s ease;
+}
+td i.fa-user-edit:hover{
+    scale: 1.2;
+    font-size: 14px;
+    background: var(--dark);
+    color: var(--light);
+}
+
+.action-icons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    gap: 5px;
+}
+
+.pagination{
+    width: 100%;
+}
+@media only screen and (max-width: 847px){
+    .main-list{
+        min-width: max-content;
+    }
+}
+@media only screen and (max-width: 630px){
+    .list-head{
+        padding: 10px;
+    }
+}

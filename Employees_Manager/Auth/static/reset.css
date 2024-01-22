@@ -49,6 +49,7 @@
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 /* Track */
 ::-webkit-scrollbar-track {
@@ -57,6 +58,8 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: var(--gray);
+  border: 2px solid var(--light);
+  border-radius: 10px;
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
@@ -114,14 +117,14 @@ input:-webkit-autofill:active{
     overflow: hidden;
     height: calc(100% - 120px);
     position: fixed;
-    top: 120px;
+    z-index: 202;
+    top: 20px;
     right: 20px;
     display: flex;
     flex-direction: column-reverse;
     gap: 10px;
     justify-content: flex-end;
     align-items: flex-end;
-    z-index: 55;
     transition: all .3s ease;
     pointer-events: none;
 }
@@ -133,7 +136,7 @@ input:-webkit-autofill:active{
     background: white;
     display: flex;
     gap: 10px;
-    padding: 15px;
+    padding: 10px;
     width: 280px;
     border-radius: 10px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 70px -20px, 
@@ -175,12 +178,11 @@ input:-webkit-autofill:active{
     }
 }
 .alert img{
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
-    background: white;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 10px 20px -10px, 
                 rgba(0, 0, 0, 0.3) 0px 7.5px 150px -7.5px;
 }
@@ -210,14 +212,14 @@ input:-webkit-autofill:active{
 }
 .alert .alert-title{
     color: var(--dark);
-    font-family: Jost;
-    font-size: 25px;
+    font-family: Jost-medium;
+    font-size: 18px;
     color: white;
 }
 .alert .alert-text{
-    font-size: 14px;
+    font-size: 13px;
     color: white;
-    font-size: Jost;
+    font-size: Poppins;
 }
 @keyframes openAlert {
     from{
@@ -240,4 +242,61 @@ input:-webkit-autofill:active{
 
 .flex{
     display: flex;
+}
+
+.popup-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+.popup-container-active{
+    height: 100vh;
+}
+.confirm-alert{
+    max-width: 250px;
+    width: 100%;
+    background-color: var(--light);
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 70px -20px, 
+                rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.confirm-alert h2{
+    font-size: 20px;
+    font-family: Poppins-bold;
+}
+.confirm-alert p{
+    font-size: 14px;
+    font-family: Poppins;
+    color: var(--gray);
+    margin-top: -3px;
+    margin-bottom: 15px;
+}
+.confirm-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.confirm-buttons button{
+    padding: 5px 14px;
+    border-radius: 5px;
+    background-color: var(--bg-color);
+    transition: all .3s ease;
+}
+.confirm-buttons button:nth-child(2){
+    background-color: var(--secondary);
+    color: var(--light);
+}
+.confirm-buttons button:hover{
+    scale: 1.07;
 }

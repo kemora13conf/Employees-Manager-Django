@@ -1,0 +1,54 @@
+<div class="list-container">
+  <div class="list-head">
+    <h1>Employees</h1>
+    <button class="list-btn list-add-btn">
+      Add employee
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+  <div class="list-holder">
+    <table class="main-list">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>FullName</th>
+          <th>Department</th>
+          <th>Position</th>
+          <th>Salary</th>
+          <th>Prime</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if employees %} {% for employee in employees %}
+        <tr>
+          <td>{{ employee.employee_id }}</td>
+          <td>{{ employee.fullname }}</td>
+          <td>{{ employee.department.name }}</td>
+          <td>{{ employee.position.name }}</td>
+          <td>{{ employee.salary }}</td>
+          <td>{{ employee.prime }}</td>
+          <td>
+            <div class=" action-icons">
+                <i class="fas fa-user-edit" data-id="{{ employee.employee_id }}"></i>
+                <i class="fas fa-trash" data-id="{{ employee.employee_id }}"></i>
+            </div> 
+          </td>
+        </tr>
+        {% endfor %} {% else %}
+        <tr>
+          <td colspan="7">No employees</td>
+        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+  <div class="pagination">
+    <div class="total">
+        Total items: {{ paginator.count }}
+    </div>
+    <div class="page">
+       {{ paginator.page_index }} / {{ paginator.num_pages }}
+    </div>
+  </div>
+</div>

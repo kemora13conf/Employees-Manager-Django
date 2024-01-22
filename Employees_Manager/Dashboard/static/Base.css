@@ -3,7 +3,7 @@ header{
     top: 0;
     left: 0;
     width: 100%;
-    height: 100px;
+    height: 80px;
     background: var(--light);
     display: flex;
     gap: 10px;
@@ -48,14 +48,15 @@ header{
     align-items: center;
     gap: 10px;
     padding: 0px 10px;
+    padding-right: 50px;
 }
 
 nav{
     position: fixed;
     z-index: 201;
-    top: 100px;
+    top: 80px;
     width: 250px;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 80px);
     padding: 50px 20px 0px 20px;
     background: var(--light);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 12px 10px 0px,
@@ -159,12 +160,144 @@ nav ul li:nth-child(5).active ~ .indicator{
 
 main{
     position: relative;
-    top: 100px;
+    top: 80px;
     left: 250px;
     width: calc(100% - 250px);
-    height: calc(100vh - 100px);
+    height: calc(100vh - 80px);
     padding: 20px 20px 0px 20px;
     transition: all .3s ease-in-out;
+}
+
+.side-panel{
+    position: fixed;
+    max-width: 300px;
+    width: 300px;
+    height: calc(100vh - 80px);
+    background: var(--light);
+    top: 80px;
+    right: -100%;
+    z-index: 201;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 12px 10px 0px,
+                rgba(100, 100, 111, 0.1) 0px 4px 3px 0px;
+    transition: all .3s ease-in-out;
+}
+.side-panel-active{
+    right: 0px;
+}
+.side-panel-head{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+.side-panel-head h2{
+    font-size: 18px;
+    font-family: Jost-medium;
+}
+.side-panel-head i{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-color); 
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+.side-panel-head i:hover{
+    background-color: var(--dark);
+    color: var(--light);
+}
+.side-panel-body{
+    max-height: calc(100% - 50px);
+    overflow-y: auto;
+    width: 100%;
+    padding: 10px 20px;
+}
+.side-panel-body form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.side-panel-body form div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+.side-panel-body form div label{
+    font-family: Jost-medium;
+    padding-left: 5px;
+}
+.side-panel-body form div input,
+.side-panel-body form div select{
+    outline: none;
+    background-color: var(--bg-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.04),
+                0px 0px 2px rgba(0, 0, 0, 0.1);
+}
+.side-panel-body form button{
+    padding: 10px 20px;
+    background: var(--secondary);
+    border-radius: 5px;
+    font-family: Jost-medium;
+    color: var(--light);
+    margin: 10px 0px;
+    transition: all .3s ease-in-out;
+}
+.side-panel-body form button:hover{
+    background-color: var(--dark);
+}
+.messages{
+    width: calc(100% -250px);
+    z-index: 201;
+    margin-left: 250px;
+    margin-top: 80px;
+    margin-bottom: -80px;
+}
+.messages div{
+    background-color: var(--light);
+    color: var(--light);
+    padding: 10px 20px 15px 20px;
+    position: relative;
+}
+.messages div.error{
+    background-color: var(--red);
+}
+.messages div.success{
+    background-color: var(--green);
+}
+.messages div::before{
+    content: '';
+    width: 100%;
+    height: 5px;
+    background-color: var(--bg-color);
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+.messages div::after{
+    content: '';
+    width: 100%;
+    height: 5px;
+    background-color: var(--dark);
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    animation: slide 3s forwards ;
+}
+@keyframes slide {
+    0%{
+        width: 100%;
+    }
+    100%{
+        width: 0;
+    }
 }
 @media only screen and (max-width: 810px){
     .logo{
@@ -172,12 +305,6 @@ main{
     }
     .section-title{
         margin-left: 10px;
-    }
-    .profile{
-        margin-right: 10px;
-    }
-    .profile--image .name{
-        display: none;
     }
     nav{
         width: 200px;
@@ -193,6 +320,13 @@ main{
     main{
         left: 200px;
         width: calc(100% - 200px);
+    }
+    .side-panel{
+        top: 70px;
+        height: calc(100vh - 70px);
+    }
+    .messages{
+        margin-left: 200px;
     }
 }
 
@@ -213,15 +347,11 @@ main{
     }
     .section-title{
         display: none;
-    }
-    .today-date{
-        font-family: Jost;
-        font-size: 14px;
-    }
-    .section-title,
-    .today-date,
-    .profile--btn{
         margin: 0;
+    }
+    .logout-btn{
+        padding: 0;
+        padding-right: 20px;
     }
     body{
         display: flex;
@@ -345,6 +475,11 @@ main{
         left: 0;
         width: 100%;
         height: calc(100vh - 70px);
+    }
+    .messages{
+        width: 100%;
+        margin-top: 70px;
+        margin-left: 0;
     }
 }
 @media only screen and (max-width: 370px){

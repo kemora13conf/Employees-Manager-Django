@@ -1,0 +1,13 @@
+{%if employee %}
+    <form method="POST" action="/api/employees/{{employee.employee_id}}">
+        {% csrf_token %}
+        {{ form }}
+        <Button type="submit">Update Employee</Button>
+    </form>
+{% else %}
+    <form method="POST" action="/api/employees">
+        {% csrf_token %}
+        {{ form }}
+        <Button type="submit">Add New Employee</Button>
+    </form>
+{% endif %}

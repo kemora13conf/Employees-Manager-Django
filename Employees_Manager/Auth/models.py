@@ -21,9 +21,19 @@ class Employee(models.Model):
     department = models.ForeignKey('Department', on_delete=models.CASCADE)
     position = models.ForeignKey('Position', on_delete=models.CASCADE)
     join_date = models.DateField()
+    primes = models.ManyToManyField('TypePrime', through='Prime')
     
     def __str__(self):
-        return self.name
+        return self.fullname
+    def toJson(self):
+        return {
+            'fullname': self.fullname,
+            'email': self.email,
+            'phone': self.phone,
+            'birthday': 'today',
+            'address': self.address,
+            'salary': self.salary,
+        }
 
 class Department(models.Model):
     department_id = models.AutoField(primary_key=True, unique=True)
@@ -52,4 +62,4 @@ class Prime(models.Model):
     date = models.DateField()
     
     def __str__(self):
-        return self.name
+        return self.employee.fullname + " - " + self.type_prime.name
