@@ -16,7 +16,7 @@ const csrfToken = document.cookie
   .split("=")[1];
 
 addBtn.addEventListener('click', (e) => {
-    const url = `/get_employee_form`;
+    const url = `/get_position_form`;
     const options = {
       method: "GET",
     };
@@ -28,8 +28,6 @@ addBtn.addEventListener('click', (e) => {
 
         sidePanel.classList.toggle('side-panel-active')
         sidePanelBody.innerHTML = res;
-        chnageDateInputs()
-        changePrime()
       });
 });
 
@@ -39,12 +37,12 @@ trash.forEach((el) => {
     popupContainer.appendChild(
       new ConfirmAlert({
         message: {
-          confirmText: "Are you sure you want to delete this employee ?",
-          confirmTitle: "Delete Employee",
+          confirmText: "Are you sure you want to delete this position ?",
+          confirmTitle: "Delete Position",
         },
         parent: popupContainer,
         onConfirm: () => {
-          const url = `/api/employees/${id}`;
+          const url = `/api/positions/${id}`;
           const options = {
             method: "DELETE",
             headers: {
@@ -61,7 +59,7 @@ trash.forEach((el) => {
                     {
                       type: "success",
                       msg_title: "SUCCES",
-                      msg_text: "Employee deleted successfully",
+                      msg_text: "Position deleted successfully",
                     },
                     alertContainer
                   ).render()
@@ -92,7 +90,7 @@ trash.forEach((el) => {
 edit.forEach((el) => {
   el.addEventListener("click", function (e) {
     const id = e.target.dataset.id;
-    const url = `/get_employee_form?id=${id}`;
+    const url = `/get_position_form?id=${id}`;
     const options = {
       method: "GET",
       headers: {
@@ -107,24 +105,9 @@ edit.forEach((el) => {
 
         sidePanel.classList.toggle('side-panel-active')
         sidePanelBody.innerHTML = res;
-        chnageDateInputs()
-        changePrime()
       });
   });
 });
-
-// because i render the create and update form with django forms i don't 
-// have the full control about the inputs
-function chnageDateInputs(){
-  const dateInputs = document.querySelectorAll('[name="birthday"],[name="join_date"]')
-  dateInputs.forEach(el=>{
-    el.type = 'date'
-  })
-}
-function changePrime(){
-  const prime = document.querySelector('[name="primes"]')
-  prime.required = false
-}
 
 
 // get the next or previous page of the table

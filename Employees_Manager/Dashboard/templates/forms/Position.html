@@ -1,0 +1,13 @@
+{%if position %}
+    <form method="POST" action="/api/positions/{{position.position_id}}">
+        {% csrf_token %}
+        {{ form }}
+        <Button type="submit">Update Position</Button>
+    </form>
+{% else %}
+    <form method="POST" action="/api/positions">
+        {% csrf_token %}
+        {{ form }}
+        <Button type="submit">Add New Position</Button>
+    </form>
+{% endif %}

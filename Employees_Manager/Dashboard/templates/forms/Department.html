@@ -1,0 +1,13 @@
+{%if department %}
+    <form method="POST" action="/api/departments/{{department.department_id}}">
+        {% csrf_token %}
+        {{ form }}
+        <Button type="submit">Update Department</Button>
+    </form>
+{% else %}
+    <form method="POST" action="/api/departments">
+        {% csrf_token %}
+        {{ form }}
+        <Button type="submit">Add New Department</Button>
+    </form>
+{% endif %}

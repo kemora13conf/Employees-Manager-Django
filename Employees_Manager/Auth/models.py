@@ -53,7 +53,7 @@ class TypePrime(models.Model):
     money = models.IntegerField()
     
     def __str__(self):
-        return self.name
+        return self.name+' '+str(self.money)+' DH'
 
 class Prime(models.Model):
     prime_id = models.AutoField(primary_key=True, unique=True)

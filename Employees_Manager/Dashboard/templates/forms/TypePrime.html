@@ -1,0 +1,13 @@
+{%if typeprime %}
+    <form method="POST" action="/api/primes/{{typeprime.type_prime_id}}">
+        {% csrf_token %}
+        {{ form }}
+        <Button type="submit">Update PrimeType</Button>
+    </form>
+{% else %}
+    <form method="POST" action="/api/primes">
+        {% csrf_token %}
+        {{ form }}
+        <Button type="submit">Add New PrimeType</Button>
+    </form>
+{% endif %}

@@ -1,0 +1,50 @@
+<div class="list-container">
+  <div class="list-head">
+    <h1>Positions</h1>
+    <button class="list-btn list-add-btn">
+      Add position
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+  <div class="list-holder">
+    <table class="main-list">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>name</th>
+          <th class="actions position-actions">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if positions %} 
+          {% for position in positions %}
+            <tr>
+              <td>{{ position.position_id }}</td>
+              <td>{{ position.name }}</td>
+              <td class="actions position-actions">
+                    <div class=" action-icons">
+                    <i class="fas fa-user-edit" data-id="{{ position.position_id }}"></i>
+                    <i class="fas fa-trash" data-id="{{ position.position_id }}"></i>
+                </div> 
+              </td>
+            </tr>
+          {% endfor %} 
+        {% else %}
+          <tr>
+            <td colspan="7">No positions</td>
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+  <div class="pagination">
+    <div class="total">
+        Total : {{ paginator.count }}
+    </div>
+    <div class="page">
+       <button class="prev" data-page="{{ paginator.page_index }}" {% if paginator.disable == "prev" or paginator.disable == "both" %} disabled {% endif %}>Previous</button>
+       <span class="page-number">{{ paginator.page_index }} / {{ paginator.num_pages }}</span>
+       <button class="next" data-page="{{ paginator.page_index }}" {% if paginator.disable == 'next' or paginator.disable == "both" %} disabled {% endif %}>Next</button>
+    </div>
+  </div>
+</div>

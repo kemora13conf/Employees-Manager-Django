@@ -1,0 +1,61 @@
+<div class="list-containerd">
+    <style>
+        .error_page{
+            width: 100%;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .error-code{
+            font-size: 45px;
+            font-family: Jost-bold;
+            color: var(--dark);
+        }
+        .error-title{
+            font-size: 27px;
+            font-family: Jost-bold;
+            color: var(--dark);
+            margin-top: -10px;
+        }
+        .error-description{
+            font-family: Jost;
+        }
+        .link{
+            margin-top: 30px;
+        }
+        .link a{
+            padding: 10px 20px;
+            background-color: var(--light-secondary);
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            transition: all .3s ease-in-out;
+        }
+        .link a:hover{
+            background: var(--dark);
+            color: var(--light);
+        }
+
+    </style>
+    <div class="error_page">
+        <div class="error-code">
+            404
+        </div>
+        <div class="error-title">
+            NOT FOUND
+        </div>
+        <div class="error-description">
+            The page you are looking for is not found!
+        </div>
+        <div class="link">
+            <a href="/">
+                <i class="fas fa-arrow-left"></i>
+                Go Home
+            </a>
+        </div>
+    </div>
+</div>

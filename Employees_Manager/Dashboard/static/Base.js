@@ -2,9 +2,17 @@ const main = document.querySelector(".main");
 let list = document.querySelectorAll(".list");
 const sidePanel = document.querySelector(".side-panel");
 const closeSidePanelBtn = sidePanel.querySelector('.close-side-panel')
+const indicator = document.querySelector('.indicator')
+
+const urls = [
+  '/',
+  '/employees',
+  '/departments',
+  '/positions',
+  '/primes'
+]
 
 let messages = document.querySelector('.messages')
-console.log(messages.children.length)
 if(messages.children.length != 0){
     setTimeout(
         ()=>{
@@ -68,26 +76,43 @@ window.addEventListener("load", function (e) {
   loadPage();
 });
 
-function loadPage() {
+function isErrorPage(link, urls){
+  if (urls.includes(link)) return false
+  indicator.style.display='none'
+  fetch('/api/error_page', { method: "GET" })
+    .then(res => res.text())
+    .then(res => {
+      main.innerHTML = res;
+    })
+  return true
+}
+function prepareScript(link){
   var script = document.getElementById("script");
   if (script) {
     script.remove();
   }
+  var scriptElement = document.createElement("script");
+  var uniqueParam = "timestamp=" + new Date().getTime();
+  scriptElement.setAttribute("id", "script");
+  scriptElement.src =
+    "/static" +
+    `${link == "/" ? "/dashboard" : link}` +
+    ".js?" +
+    uniqueParam;
+  scriptElement.defer = true;
+  scriptElement.type = "module";
+  return scriptElement
+}
+function loadPage() {
   let link = window.location.pathname;
-  fetch("/api" + `${link == "/" ? "/dashboard" : link+'?page=2'}`, { method: "GET" })
+
+  if(isErrorPage(link, urls)) return;
+  indicator.style.display = 'flex'
+  fetch("/api" + `${link == "/" ? "/dashboard" : link+'?page=1'}`, { method: "GET" })
     .then((res) => res.text())
     .then((res) => {
       main.innerHTML = res;
-      var scriptElement = document.createElement("script");
-      var uniqueParam = "timestamp=" + new Date().getTime();
-      scriptElement.setAttribute("id", "script");
-      scriptElement.src =
-        "/static" +
-        `${link == "/" ? "/dashboard" : link}` +
-        ".js?" +
-        uniqueParam;
-      scriptElement.defer = true;
-      scriptElement.type = "module";
+      let scriptElement = prepareScript(link)
       document.head.appendChild(scriptElement);
     });
 }

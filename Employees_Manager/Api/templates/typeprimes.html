@@ -1,8 +1,8 @@
 <div class="list-container">
   <div class="list-head">
-    <h1>Employees</h1>
+    <h1>Prime Type</h1>
     <button class="list-btn list-add-btn">
-      Add employee
+      Add typeprime
       <i class="fas fa-plus"></i>
     </button>
   </div>
@@ -11,33 +11,27 @@
       <thead>
         <tr>
           <th>Id</th>
-          <th>FullName</th>
-          <th>Department</th>
-          <th>Position</th>
-          <th>Salary</th>
-          <th>Prime</th>
-          <th class="actions">Actions</th>
+          <th>Name</th>
+          <th>Money</th>
+          <th class="actions prime-actions">Actions</th>
         </tr>
       </thead>
       <tbody>
-        {% if employees %} {% for employee in employees %}
+        {% if typeprimes %} {% for typeprime in typeprimes %}
         <tr>
-          <td>{{ employee.employee_id }}</td>
-          <td>{{ employee.fullname }}</td>
-          <td>{{ employee.department.name }}</td>
-          <td>{{ employee.position.name }}</td>
-          <td>{{ employee.salary }}</td>
-          <td>{{ employee.prime }}</td>
-          <td class="actions">
+          <td>{{ typeprime.type_prime_id }}</td>
+          <td>{{ typeprime.name }}</td>
+          <td>{{ typeprime.money }}</td>
+          <td class="actions prime-actions">
                 <div class=" action-icons">
-                <i class="fas fa-user-edit" data-id="{{ employee.employee_id }}"></i>
-                <i class="fas fa-trash" data-id="{{ employee.employee_id }}"></i>
+                <i class="fas fa-user-edit" data-id="{{ typeprime.type_prime_id }}"></i>
+                <i class="fas fa-trash" data-id="{{ typeprime.type_prime_id }}"></i>
             </div> 
           </td>
         </tr>
         {% endfor %} {% else %}
         <tr>
-          <td colspan="7">No employees</td>
+          <td colspan="7">No typeprimes</td>
         </tr>
         {% endif %}
       </tbody>
