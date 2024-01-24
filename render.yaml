@@ -1,0 +1,15 @@
+services:
+- type: web
+  name: employees-manager
+  env: python
+  buildCommand: "pip install -r requirements.txt"
+  startCommand: "gunicorn Employees_Manager.Employees_Manager.wsgi:application --bind 0.0.0.0:10000"
+  envVars:
+  - key: DJANGO_SETTINGS_MODULE
+    value: Employees_Manager.Employees_Manager.settings
+  - key: SECRET_KEY
+    value: django-insecure-ex_e^)yap1&izw)$hfds*)4#*+e*c8g%!nlm(_1#)_io%kcfdj
+  - key: DEBUG
+    value: "False"
+  - key: ALLOWED_HOSTS
+    value: ".onrender.com"
