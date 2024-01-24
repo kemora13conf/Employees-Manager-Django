@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="/static/dashboard.css" />
+<div class="dashboard">
+  <div class="main-section">
+    <div class="count">
+      <h2 class="title">General Statistics</h2>
+      <div class="totals">
+        <div class="total-container">
+          <div class="total">
+            <i class="fas fa-users"></i>
+            <div class="total-title">Total Employees:</div>
+            <div class="total-count">{{ total_employees }}</div>
+          </div>
+        </div>
+        <div class="total-container">
+          <div class="total">
+            <i class="fas fa-dollar-sign"></i>
+            <div class="total-title">Primes Given Today:</div>
+            <div class="total-count">{{ primes_today_count }}</div>
+          </div>
+        </div>
+        <div class="total-container">
+          <div class="total">
+            <i class="fas fa-dollar-sign"></i>
+            <div class="total-title">Total Primes Given:</div>
+            <div class="total-count">{{ total_primes_count }}</div>
+          </div>
+        </div>
+        <div class="total-container">
+          <div class="total">
+            <i class="fas fa-dollar-sign"></i>
+            <div class="total-title">Average Salary:</div>
+            <div class="total-count">{{ average_salary }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="recent">
+      <h2 class="title">Latest Employees</h2>
+      <ul>
+        {% for employee in latest_employees %}
+        <li>
+          <i class="fas fa-user-tie"></i>
+          <div class="employee">
+            <div class="employee-name">{{ employee.fullname }}</div>
+            <div class="employee-department">{{ employee.department }}</div>
+            <div class="employee-joined-date">{{ employee.join_date }}</div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="secondary-section">
+    <section>
+      <h2>Department Statistics</h2>
+      <div class="dashboard-item">
+        <ul>
+          {% for department in department_counts %}
+          <li>{{ department.name }}: {{ department.num_employees }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Position Statistics</h2>
+      <div class="dashboard-item">
+        <ul>
+          {% for position in position_counts %}
+          <li>{{ position.name }}: {{ position.num_employees }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>

@@ -6,6 +6,9 @@ from Auth.models import Employee, Department, Position, TypePrime, Prime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import JsonResponse
 from Dashboard.Forms import EmployeeForm, DepartmentForm, PositionForm, TypePrimeForm
+from datetime import date
+from django.db import models
+from django.db.models import Count
 
 def responeObject(data):
     return {
@@ -15,15 +18,56 @@ def responeObject(data):
 def type_prime_obj(name):
     name = str(name)
     name = name.split(' ')
+    for i in range(len(name)):
+        # check if the name[i] is a number
+        try:
+            int(name[i])
+            name[1] = int(name[i])
+            break
+        except ValueError:
+            name[0] = name[0] + ' ' + name[i] if i > 0 else name[0]
+        
     return {
         'name': name[0],
-        'money': int(name[1])
+        'money': name[1]
     }
                 
 # Create your views here.
 @login_required(login_url='login')
 def index(request):
-    return HttpResponse('<h1>Dashboard</h1>')
+     # Total number of employees
+    total_employees = Employee.objects.count()
+
+    # Number of employees in each department
+    department_counts = Department.objects.annotate(num_employees=Count('employee')).values('name', 'num_employees')
+
+    # Number of employees in each position
+    position_counts = Position.objects.annotate(num_employees=Count('employee')).values('name', 'num_employees')
+
+    # Number of employees receiving primes today
+    primes_today_count = Prime.objects.filter(date_creation=date.today()).count()
+
+    # Total number of primes given
+    total_primes_count = Prime.objects.count()
+
+    # Average salary of all employees
+    average_salary = Employee.objects.aggregate(avg_salary=models.Avg('salary'))['avg_salary']
+
+    # Example: Fetching the latest 5 employees joined
+    latest_employees = Employee.objects.order_by('-join_date')[:5]
+
+    # Constructing the dashboard data dictionary
+    dashboard_data = {
+        'total_employees': total_employees,
+        'department_counts': list(department_counts),
+        'position_counts': list(position_counts),
+        'primes_today_count': primes_today_count,
+        'total_primes_count': total_primes_count,
+        # show only two digits after the decimal point
+        'average_salary': f'{average_salary:.2f}',
+        'latest_employees': [{'fullname': emp.fullname, 'join_date': emp.join_date, 'department': emp.department.name, 'position': emp.position.name} for emp in latest_employees],
+    }
+    return render(request, 'dashboard.html', dashboard_data)
 
 def isPrimeError(errors_list):
     if len(errors_list) == 1:
@@ -130,6 +174,7 @@ def employees_crud(request, id):
                 type_primes = form.cleaned_data['primes'];
                 for type_prime_name in type_primes:
                     type_prime_name = type_prime_obj(type_prime_name);
+                    print(f'\n\n{type_prime_name}\n\n\n')
                     type_prime = TypePrime.objects.filter(name=type_prime_name['name'], money=type_prime_name['money']).first()
                     if type_prime is not None:
                         prime = Prime(

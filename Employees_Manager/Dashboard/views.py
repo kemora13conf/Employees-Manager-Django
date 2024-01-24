@@ -5,7 +5,7 @@ from .Forms import EmployeeForm, DepartmentForm, PositionForm, TypePrimeForm
 from Auth.models import Employee, Department, Position, TypePrime
 
 @login_required(login_url='login')
-def index(request, route=None):
+def index(request, **kwargs):
     return render(request, 'base.html')
 
 @login_required(login_url='login')

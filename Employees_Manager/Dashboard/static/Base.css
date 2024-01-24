@@ -166,7 +166,6 @@ main{
     width: calc(100% - 250px);
     height: calc(100vh - 80px);
     padding: 20px 20px 0px 20px;
-    transition: all .3s ease-in-out;
 }
 
 .side-panel{

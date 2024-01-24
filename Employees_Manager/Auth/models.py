@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 class UserAdmin(AbstractUser):
@@ -60,6 +61,7 @@ class Prime(models.Model):
     employee = models.ForeignKey('Employee', on_delete=models.CASCADE)
     type_prime = models.ForeignKey('TypePrime', on_delete=models.CASCADE)
     date = models.DateField()
+    date_creation = models.DateField(default=datetime.now)
     
     def __str__(self):
         return self.employee.fullname + " - " + self.type_prime.name

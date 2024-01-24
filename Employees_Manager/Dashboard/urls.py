@@ -7,5 +7,4 @@ urlpatterns = [
     path('get_department_form', get_department_form, name='get_department_form'),
     path('get_position_form', get_position_form, name='get_position_form'),
     path('get_typeprime_form', get_typeprime_form, name='get_typeprime_form'),
-    path('<str:route>', index, name='redirect_to_home'),
 ]

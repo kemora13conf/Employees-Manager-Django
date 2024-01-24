@@ -1,0 +1,217 @@
+.main {
+  padding: 0px;
+}
+.dashboard {
+  width: 100%;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  padding: 20px 20px 0px 20px;
+  animation: fadeIn 0.25s forwards ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;  
+  container-type: inline-size;
+  container-name: dashboard;
+}
+
+.main-section {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.count {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: fit-content;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background: var(--light);
+  container-type: inline-size;
+  container-name: count;
+}
+@container count (min-width: 700px) {
+  .total {
+    font-size: 2em;
+  }
+}
+.title {
+  font-size: 22px;
+  font-family: Jost-bold;
+}
+.totals {
+  width: 100%;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  justify-content: space-between;
+
+}
+.total-container{
+  container-type: inline-size;
+  container-name: total-container;
+}
+.total {
+  background: var(--light-secondary);
+  padding: 10px 10px 10px 80px;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.total i{
+  font-size: 1.5em;
+  background-color: var(--dark);
+  color: var(--light);
+  position: absolute;
+  height: 100%;
+  max-width: 70px;
+  aspect-ratio: 1/1;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px 50px 50px 0px;
+}
+.total-title {
+  font-size: 1em;
+  font-family: Jost-bold;
+
+}
+.recent {
+  width: 350px;
+  padding: 20px;
+  background: var(--light);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+.recent ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  gap: 10px;
+  display: grid;
+  /* get the height value from an ul attribute called data-height */
+  overflow-y: auto;
+}
+.recent ul li{
+  display: flex;
+  gap: 10px;
+}
+.recent ul li i{
+  font-size: 1.5em;
+  background-color: var(--light-secondary);
+  color: var(--dark);
+  height: 40px;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+
+}
+.recent ul li .employee{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+ flex-wrap: wrap;
+}
+.employee-name{
+  font-size: 1em;
+  font-family: Jost-medium;
+  width: 100%;
+}
+.employee-department,
+.employee-joined-date{
+  font-size: 0.8em;
+  font-family: Jost-light;
+  margin-top: -10px;
+}
+
+.secondary-section{
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  background-color: var(--light);
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+.secondary-section section{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.secondary-section section h2{
+  font-size: 1.5em;
+  font-family: Jost-bold;
+}
+.secondary-section section ul{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.secondary-section section ul li{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 50px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: var(--light-secondary);
+  transition: all .3s ease-in-out;
+}
+.secondary-section section ul li::before{
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 25px;
+  border-radius: 5px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  left: -8px;
+  background: var(--dark);
+  box-shadow: 0px 0px 0px 3px var(--light);
+}
+.secondary-section section ul li::after{
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 25px;
+  border-radius: 5px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  right: -8px;
+  background: var(--dark);
+  box-shadow: 0px 0px 0px 3px var(--light);
+}
+
+@container dashboard (max-width: 700px) {
+  .main-section,
+  .secondary-section{
+    flex-direction: column;
+  }
+  .recent{
+    width: 100%;
+  }
+  .recent ul{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  }
+}
