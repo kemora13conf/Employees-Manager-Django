@@ -18,15 +18,16 @@ The [`Dashboard`](Dashboard) app is responsible for displaying user data on a da
 
 ## Setup
 
-To set up the project, you need to have Python and Django installed. You can then install the project dependencies using npm:
+To set up the project, you need to have Python. Then you can run the virtual environment by running:
 
 ```sh
-npm install
+venv\Scripts\activate
 ```
 
 To run the project, use the Django manage.py script:
 
 ```sh
+cd Employees_Manager
 python manage.py runserver
 ```
 
